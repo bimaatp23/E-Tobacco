@@ -19,7 +19,16 @@ Route::post('/AuthLogin', [MasterController::class, 'AuthLogin'])->name('AuthLog
 Route::get('/Logout', [MasterController::class, 'Logout'])->name('Logout');
 
 Route::middleware(['Login'])->group(function() {
-    Route::get('/Dashboard', [MasterController::class, 'Dashboard'])->name('Dashboard');
+    Route::get('/', [MasterController::class, 'Dashboard'])->name('Dashboard');
     Route::get('/PengaturanProfile', [MasterController::class, 'PengaturanProfile'])->name('PengaturanProfile');
     Route::post('/AuthPengaturanProfile', [MasterController::class, 'AuthPengaturanProfile'])->name('AuthPengaturanProfile');
+    // Khusus Manajer
+    Route::get('/DataKaryawan', [MasterController::class, 'DataKaryawan'])->name('DataKaryawan');
+    Route::get('/TambahKaryawan', [MasterController::class, 'TambahKaryawan'])->name('TambahKaryawan');
+    Route::post('/AuthTambahKaryawan', [MasterController::class, 'AuthTambahKaryawan'])->name('AuthTambahKaryawan');
+    Route::get('/EditKaryawan/{id}', [MasterController::class, 'EditKaryawan'])->name('EditKaryawan');
+    Route::post('/AuthEditKaryawan', [MasterController::class, 'AuthEditKaryawan'])->name('AuthEditKaryawan');
+    Route::get('/HapusKaryawan/{id}', [MasterController::class, 'HapusKaryawan'])->name('HapusKaryawan');
+    Route::post('/AuthHapusKaryawan', [MasterController::class, 'AuthHapusKaryawan'])->name('AuthHapusKaryawan');
+    // Khusus Karyawan
 });

@@ -67,4 +67,49 @@ class MasterController extends Controller
         Session::flash('alertSuccess', 'Profile Berhasil Diperbarui');
         return back();
     }
+    public function DataKaryawan() {
+        $Karyawan = DB::table('karyawan')->get();
+        return view('DataKaryawan', compact('Karyawan'));
+    }
+    public function TambahKaryawan() {
+        return view('TambahKaryawan');
+    }
+    public function AuthTambahKaryawan(Request $req) {
+        $Data = DB::table('karyawan')->where('username', $req->username);
+        if ($Data->count() == 0) {
+            DB::table('karyawan')->insert([
+                'nama' => $req->nama,
+                'tingkat' => $req->tingkat,
+                'username' => $req->username,
+                'password' => $req->password
+            ]);
+            Session::flash('alertSuccess', 'Data Karyawan Berhasil Ditambah');
+            return redirect()->route('DataKaryawan');
+        } else {
+            Session::flash('alertError', 'Username Telah Digunakan');
+            return back();
+        }
+    }
+    public function EditKaryawan($id) {
+        $Data = DB::table('karyawan')->where('id', $id)->first();
+        return view('EditKaryawan', compact('Data'));
+    }
+    public function AuthEditKaryawan(Request $req) {
+        DB::table('karyawan')->where('username', $req->username)->update([
+            'nama' => $req->nama,
+            'tingkat' => $req->tingkat,
+            'password' => $req->password
+        ]);
+        Session::flash('alertSuccess', 'Data Karyawan Berhasil Diedit');
+        return redirect()->route('DataKaryawan');
+    }
+    public function HapusKaryawan($id) {
+        $Data = DB::table('karyawan')->where('id', $id)->first();
+        return view('HapusKaryawan', compact('Data'));
+    }
+    public function AuthHapusKaryawan(Request $req) {
+        DB::table('karyawan')->where('username', $req->username)->delete();
+        Session::flash('alertSuccess', 'Data Karyawan Berhasil Dihapus');
+        return redirect()->route('DataKaryawan');
+    }
 }
