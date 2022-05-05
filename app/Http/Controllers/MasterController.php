@@ -67,6 +67,30 @@ class MasterController extends Controller
         Session::flash('alertSuccess', 'Profile Berhasil Diperbarui');
         return back();
     }
+    public function KinerjaDanGaji($username) {
+        return view('KinerjaDanGaji', compact('username'));
+    }
+    public function AuthKinerjaDanGaji(Request $req) {
+        $Karyawan = DB::table('karyawan')->where('username', $req->username)->first();
+        $Data = DB::table('absensi')
+                ->where('username', $Karyawan->username)
+                ->where('waktu', '>', mktime(1, 0, 0, $req->bulan, 1, $req->tahun))
+                ->where('waktu', '<', mktime(23, 0, 0, $req->bulan, 31, $req->tahun))
+                ->get();
+        $Bulan = date('M', mktime(1, 0, 0, $req->bulan, 15, $req->tahun));
+        $Tahun = date('Y', mktime(1, 0, 0, $req->bulan, 15, $req->tahun));
+        $HariKerja = 0;
+        foreach ($Data as $dt) {
+            $HariKerja += 1;
+        }
+        if ($Karyawan->tingkat == 'Tetap') {
+            $GajiHarian = 80000;
+        } else {
+            $GajiHarian = 60000;
+        }
+        Session::flash('Data', [$Bulan, $Tahun, $HariKerja, 0, $GajiHarian, $HariKerja*$GajiHarian]);
+        return back();
+    }
     public function DataKaryawan() {
         $Karyawan = DB::table('karyawan')->get();
         return view('DataKaryawan', compact('Karyawan'));
@@ -111,5 +135,38 @@ class MasterController extends Controller
         DB::table('karyawan')->where('username', $req->username)->delete();
         Session::flash('alertSuccess', 'Data Karyawan Berhasil Dihapus');
         return redirect()->route('DataKaryawan');
+    }
+    public function DataAbsensi() {
+        $Absensi = DB::table('absensi');
+        if (Session::get('Level') == 'Karyawan') {
+            $Absensi = $Absensi->where('username', Session::get('Username'));
+        }
+        $Absensi = $Absensi->get();
+        $Aktifitas = DB::table('aktifitas');
+        $Kabupaten = DB::table('kabupaten');
+        $Kecamatan = DB::table('kecamatan');
+        $Desa = DB::table('desa')->get();
+        return view('DataAbsensi', compact('Absensi', 'Aktifitas', 'Kabupaten', 'Kecamatan', 'Desa'));
+    }
+    public function TambahAbsensi() {
+        $Aktifitas = DB::table('aktifitas')->get();
+        return view('TambahAbsensi', compact('Aktifitas'));
+    }
+    public function AuthTambahAbsensi(Request $req) {
+        $Waktu = time();
+        $NamaFile = $Waktu.'.'.$req->file->getClientOriginalExtension();
+        $req->file->move('../public/Doc', $NamaFile);
+        DB::table('absensi')->insert([
+            'waktu' => $Waktu,
+            'dokumentasi' => $NamaFile,
+            'id_aktifitas' => $req->aktifitas,
+            'deskripsi' => $req->deskripsi,
+            'id_kabupaten' => $req->kabupaten,
+            'id_kecamatan' => $req->kecamatan,
+            'id_desa' => $req->desa,
+            'username' => Session::get('Username')
+        ]);
+        Session::flash('alertSuccess', 'Data Absensi Berhasil Ditambah');
+        return redirect()->route('DataAbsensi');
     }
 }

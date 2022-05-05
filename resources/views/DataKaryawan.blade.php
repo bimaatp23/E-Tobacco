@@ -30,6 +30,7 @@
                     <td>
                         <a href="{{ url('EditKaryawan/'.$dt->id) }}"><label for=""><i class="fa-solid fa-pencil"></i></label></a>
                         <a href="{{ url('HapusKaryawan/'.$dt->id) }}"><label for=""><i class="fa-solid fa-trash"></i></label></a>
+                        <a href="{{ url('KinerjaDanGaji/'.$dt->username) }}"><label for="">Kinerja Dan Gaji</label></a>
                     </td>
                 </tr>
                 @endforeach

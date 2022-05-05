@@ -12,10 +12,10 @@
                     <input type="text" name="nama" placeholder="Nama" value="{{ $Data->nama }}" required>
                 </div>
                 <div class="w-full text-center">
-                    <select name="tingkat">
+                    <select name="tingkat" required>
+                        <option value="">Tingkat</option>
                         <option value="Tetap" <?php if ($Data->tingkat == 'Tetap') { echo 'selected'; } ?>>Tetap</option>
                         <option value="Kontrak" <?php if ($Data->tingkat == 'Kontrak') { echo 'selected'; } ?>>Kontrak</option>
-                        <option value="Outsourcing" <?php if ($Data->tingkat == 'Outsourcing') { echo 'selected'; } ?>>Outsourcing</option>
                     </select>
                 </div>
                 <div class="w-full text-center">

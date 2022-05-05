@@ -12,10 +12,10 @@
                     <input type="text" name="nama" placeholder="Nama" required>
                 </div>
                 <div class="w-full text-center">
-                    <select name="tingkat">
+                    <select name="tingkat" required>
+                        <option value="">Tingkat</option>
                         <option value="Tetap">Tetap</option>
                         <option value="Kontrak">Kontrak</option>
-                        <option value="Outsourcing">Outsourcing</option>
                     </select>
                 </div>
                 <div class="w-full text-center">

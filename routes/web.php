@@ -22,6 +22,8 @@ Route::middleware(['Login'])->group(function() {
     Route::get('/', [MasterController::class, 'Dashboard'])->name('Dashboard');
     Route::get('/PengaturanProfile', [MasterController::class, 'PengaturanProfile'])->name('PengaturanProfile');
     Route::post('/AuthPengaturanProfile', [MasterController::class, 'AuthPengaturanProfile'])->name('AuthPengaturanProfile');
+    Route::get('/KinerjaDanGaji/{username}', [MasterController::class, 'KinerjaDanGaji'])->name('KinerjaDanGaji');
+    Route::post('/AuthKinerjaDanGaji', [MasterController::class, 'AuthKinerjaDanGaji'])->name('AuthKinerjaDanGaji');
     // Khusus Manajer
     Route::get('/DataKaryawan', [MasterController::class, 'DataKaryawan'])->name('DataKaryawan');
     Route::get('/TambahKaryawan', [MasterController::class, 'TambahKaryawan'])->name('TambahKaryawan');
@@ -31,4 +33,7 @@ Route::middleware(['Login'])->group(function() {
     Route::get('/HapusKaryawan/{id}', [MasterController::class, 'HapusKaryawan'])->name('HapusKaryawan');
     Route::post('/AuthHapusKaryawan', [MasterController::class, 'AuthHapusKaryawan'])->name('AuthHapusKaryawan');
     // Khusus Karyawan
+    Route::get('/DataAbsensi', [MasterController::class, 'DataAbsensi'])->name('DataAbsensi');
+    Route::get('/TambahAbsensi', [MasterController::class, 'TambahAbsensi'])->name('TambahAbsensi');
+    Route::post('/AuthTambahAbsensi', [MasterController::class, 'AuthTambahAbsensi'])->name('AuthTambahAbsensi');
 });

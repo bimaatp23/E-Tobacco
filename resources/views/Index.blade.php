@@ -92,8 +92,11 @@
         .static-form input {
             @apply px-2 py-1 w-full rounded-md text-lg text-green-600 font-medium border-2 border-green-600 hover:bg-slate-100 focus:bg-slate-100 focus:outline-none;
         }
+        .static-form input.file {
+            @apply px-2 py-0.5 w-full rounded-md text-lg text-green-600 font-medium border-2 border-green-600 hover:bg-slate-100 focus:bg-slate-100 focus:outline-none;
+        }
         .static-form select {
-            @apply px-2 py-1 w-full rounded-md text-lg text-green-600 font-medium border-2 border-green-600 hover:bg-slate-100 focus:bg-slate-100 focus:outline-none;
+            @apply px-2 py-1.5 w-full rounded-md text-lg text-green-600 font-medium border-2 border-green-600 hover:bg-slate-100 focus:bg-slate-100 focus:outline-none;
         }
         .static-form label {
             @apply text-lg text-green-600;
@@ -104,22 +107,22 @@
         .static-table {
             @apply absolute left-4 top-16 max-h-[70%] max-w-[90%] overflow-scroll;
         }
-        .static-table table {
+        table {
             @apply table-auto text-lg rounded-md overflow-hidden;
         }
-        .static-table thead tr {
+        thead tr {
             @apply text-white bg-gradient-to-r from-green-600 to-green-400;
         }
-        .static-table th {
+        th {
             @apply px-3 py-2 border-2 border-green-800;
         }
-        .static-table tbody tr {
+        tbody tr {
             @apply hover:bg-slate-300;
         }
-        .static-table td {
+        td {
             @apply px-3 py-2 border-2 border-green-800;
         }
-        .static-table label {
+        label {
             @apply px-3 py-2 rounded-md shadow-lg text-lg font-bold text-white bg-gradient-to-r from-green-600 to-green-400 hover:from-green-700 hover:to-green-500 active:ring-4 active:ring-green-600;
         }
         ::-webkit-scrollbar {
@@ -163,8 +166,15 @@
             @if (Session::get('Level') == 'Manager')
             <a href="{{ route('DataKaryawan') }}">
                 <li class="item-sidebar"><span><i class="fa-solid fa-user-group"></i></span> Data Karyawan</li>
+            </a>  
+            @else
+            <a href="{{ url('KinerjaDanGaji/'.Session::get('Username')) }}">
+                <li class="item-sidebar"><span><i class="fa-solid fa-calendar"></i></span> Kinerja Dan Gaji</li>
             </a>
             @endif
+            <a href="{{ route('DataAbsensi') }}">
+                <li class="item-sidebar"><span><i class="fa-solid fa-calendar"></i></span> Data Absensi</li>
+            </a>
         </ul>
     </div>
     <div id="grid4">
@@ -181,6 +191,9 @@
             </a>
         </ul>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    @yield('JS')
     @php
     echo "
     <script>
