@@ -13,7 +13,7 @@
                     <label>Yakin Hapus Data Karyawan <b>{{ $Data->nama }}</b> ({{ $Data->username }}) ?</label>
                 </div>
                 <div class="w-full text-center">
-                    <button type="submit">Hapus</button>
+                    <button type="submit">Yakin</button>
                 </div>
             </div>
         </form>

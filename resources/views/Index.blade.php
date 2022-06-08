@@ -99,7 +99,7 @@
             @apply px-2 py-1.5 w-full rounded-md text-lg text-green-600 font-medium border-2 border-green-600 hover:bg-slate-100 focus:bg-slate-100 focus:outline-none;
         }
         .static-form label {
-            @apply text-lg text-green-600;
+            @apply text-lg text-white;
         }
         .static-form button {
             @apply px-3 py-2 w-full rounded-md shadow-lg font-bold text-white bg-gradient-to-r from-green-600 to-green-400 hover:from-green-700 hover:to-green-500 active:ring-4 active:ring-green-600;
@@ -123,7 +123,7 @@
             @apply px-3 py-2 border-2 border-green-800;
         }
         label {
-            @apply px-3 py-2 rounded-md shadow-lg text-lg font-bold text-white bg-gradient-to-r from-green-600 to-green-400 hover:from-green-700 hover:to-green-500 active:ring-4 active:ring-green-600;
+            @apply px-3 py-2 float-left mr-2 mb-2 rounded-md shadow-lg text-lg font-bold text-white bg-gradient-to-r from-green-600 to-green-400 hover:from-green-700 hover:to-green-500 active:ring-4 active:ring-green-600;
         }
         ::-webkit-scrollbar {
             @apply w-3 h-3;
@@ -168,12 +168,12 @@
                 <li class="item-sidebar"><span><i class="fa-solid fa-user-group"></i></span> Data Karyawan</li>
             </a>  
             @else
-            <a href="{{ url('KinerjaDanGaji/'.Session::get('Username')) }}">
-                <li class="item-sidebar"><span><i class="fa-solid fa-calendar"></i></span> Kinerja Dan Gaji</li>
-            </a>
             @endif
             <a href="{{ route('DataAbsensi') }}">
                 <li class="item-sidebar"><span><i class="fa-solid fa-calendar"></i></span> Data Absensi</li>
+            </a>
+            <a href="{{ route('DataGaji') }}">
+                <li class="item-sidebar"><span><i class="fa-solid fa-money-check-dollar"></i></span> Data Gaji</li>
             </a>
         </ul>
     </div>
@@ -183,7 +183,7 @@
     </div>
     <div class="profile">
         <ul>
-            <a href="{{ route('PengaturanProfile') }}">
+            <a href="{{ url('PengaturanProfile/'.Session::get('Username')) }}">
                 <li><i class="fa-solid fa-user-pen"></i> Pengaturan Profile</li>
             </a>
             <a href="{{ route('Logout') }}">

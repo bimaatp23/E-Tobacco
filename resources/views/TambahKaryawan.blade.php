@@ -12,10 +12,11 @@
                     <input type="text" name="nama" placeholder="Nama" required>
                 </div>
                 <div class="w-full text-center">
-                    <select name="tingkat" required>
-                        <option value="">Tingkat</option>
-                        <option value="Tetap">Tetap</option>
-                        <option value="Kontrak">Kontrak</option>
+                    <select name="jenisKaryawan" required>
+                        <option value="">Jenis Karyawan</option>
+                        @foreach ($JenisKaryawan as $dt)
+                            <option value="{{ $dt->id }}">{{ $dt->nama }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="w-full text-center">

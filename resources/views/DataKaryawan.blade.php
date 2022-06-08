@@ -2,7 +2,7 @@
 
 @section('Title')
     Data Karyawan
-    <a href="{{ route('TambahKaryawan') }}" class="float-right"><label><i class="fa-solid fa-user-plus"></i></label></a>
+    <a href="{{ route('TambahKaryawan') }}" class="float-right"><label>Tambah</label></a>
 @endsection
 
 @section('Main')
@@ -12,7 +12,7 @@
                 <tr>
                     <th>#</th>
                     <th>Nama</th>
-                    <th>Tingkat</th>
+                    <th>Jenis Karyawan</th>
                     <th>Username</th>
                     <th>Password</th>
                     <th>Action</th>
@@ -24,13 +24,12 @@
                 <tr>
                     <td><b>{{ $num++ }}</b></td>
                     <td>{{ $dt->nama }}</td>
-                    <td>{{ $dt->tingkat }}</td>
+                    <td>{{ $dt->nama_jenis_karyawan }}</td>
                     <td>{{ $dt->username }}</td>
                     <td>{{ $dt->password }}</td>
                     <td>
-                        <a href="{{ url('EditKaryawan/'.$dt->id) }}"><label for=""><i class="fa-solid fa-pencil"></i></label></a>
-                        <a href="{{ url('HapusKaryawan/'.$dt->id) }}"><label for=""><i class="fa-solid fa-trash"></i></label></a>
-                        <a href="{{ url('KinerjaDanGaji/'.$dt->username) }}"><label for="">Kinerja Dan Gaji</label></a>
+                        <a href="{{ url('PengaturanProfile/'.$dt->username) }}"><label for="">Edit</label></a>
+                        <a href="{{ url('HapusKaryawan/'.$dt->id) }}"><label for="">hapus</label></a>
                     </td>
                 </tr>
                 @endforeach

@@ -20,10 +20,10 @@ Route::get('/Logout', [MasterController::class, 'Logout'])->name('Logout');
 
 Route::middleware(['Login'])->group(function() {
     Route::get('/', [MasterController::class, 'Dashboard'])->name('Dashboard');
-    Route::get('/PengaturanProfile', [MasterController::class, 'PengaturanProfile'])->name('PengaturanProfile');
+    Route::get('/PengaturanProfile/{username}', [MasterController::class, 'PengaturanProfile']);
     Route::post('/AuthPengaturanProfile', [MasterController::class, 'AuthPengaturanProfile'])->name('AuthPengaturanProfile');
-    Route::get('/KinerjaDanGaji/{username}', [MasterController::class, 'KinerjaDanGaji'])->name('KinerjaDanGaji');
-    Route::post('/AuthKinerjaDanGaji', [MasterController::class, 'AuthKinerjaDanGaji'])->name('AuthKinerjaDanGaji');
+    Route::get('/DataAbsensi', [MasterController::class, 'DataAbsensi'])->name('DataAbsensi');
+    Route::get('/DataGaji', [MasterController::class, 'DataGaji'])->name('DataGaji');
     // Khusus Manajer
     Route::get('/DataKaryawan', [MasterController::class, 'DataKaryawan'])->name('DataKaryawan');
     Route::get('/TambahKaryawan', [MasterController::class, 'TambahKaryawan'])->name('TambahKaryawan');
@@ -32,8 +32,11 @@ Route::middleware(['Login'])->group(function() {
     Route::post('/AuthEditKaryawan', [MasterController::class, 'AuthEditKaryawan'])->name('AuthEditKaryawan');
     Route::get('/HapusKaryawan/{id}', [MasterController::class, 'HapusKaryawan'])->name('HapusKaryawan');
     Route::post('/AuthHapusKaryawan', [MasterController::class, 'AuthHapusKaryawan'])->name('AuthHapusKaryawan');
+    Route::get('/KonfirmasiGaji/{id}', [MasterController::class, 'KonfirmasiGaji'])->name('KonfirmasiGaji');
+    Route::post('/AuthKonfirmasiGaji', [MasterController::class, 'AuthKonfirmasiGaji'])->name('AuthKonfirmasiGaji');
     // Khusus Karyawan
-    Route::get('/DataAbsensi', [MasterController::class, 'DataAbsensi'])->name('DataAbsensi');
     Route::get('/TambahAbsensi', [MasterController::class, 'TambahAbsensi'])->name('TambahAbsensi');
     Route::post('/AuthTambahAbsensi', [MasterController::class, 'AuthTambahAbsensi'])->name('AuthTambahAbsensi');
 });
+
+Route::get('/Time/{hari}/{bulan}/{tahun}', [MasterController::class, 'Time']);

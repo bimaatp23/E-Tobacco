@@ -1,15 +1,10 @@
-@php
-    function Data($table, $id) {
-        $Data = DB::table($table)->where('id', $id)->first();
-        return $Data->nama;
-    }
-@endphp
-
 @extends('Index')
 
 @section('Title')
     Data Absensi
-    <a href="{{ route('TambahAbsensi') }}" class="float-right"><label><i class="fa-solid fa-calendar-plus"></i></label></a>
+    @if (Session::get('Level') == 'Karyawan')
+    <a href="{{ route('TambahAbsensi') }}" class="float-right"><label>Tambah</label></a>
+    @endif
 @endsection
 
 @section('Main')
@@ -35,10 +30,10 @@
                 <tr>
                     <td><b>{{ $num++ }}</b></td>
                     <td>{{ date('d/M/Y H:i:s', $dt->waktu) }}</td>
-                    <td>{{ Data('aktifitas', $dt->id_aktifitas) }}</td>
-                    <td>{{ Data('kabupaten', $dt->id_kabupaten) }}</td>
-                    <td>{{ Data('kecamatan', $dt->id_kecamatan) }}</td>
-                    <td>{{ Data('desa', $dt->id_desa) }}</td>
+                    <td>{{ $dt->nama_aktifitas }}</td>
+                    <td>{{ $dt->nama_kabupaten }}</td>
+                    <td>{{ $dt->nama_kecamatan }}</td>
+                    <td>{{ $dt->nama_desa }}</td>
                     @if (Session::get('Level') == 'Manager')
                     <td>{{ $dt->username }}</td>
                     @endif

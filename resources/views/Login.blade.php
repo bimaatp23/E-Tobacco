@@ -83,38 +83,36 @@
     <input type="checkbox" id="slide" class="hidden">
     <div class="card hidden md:inline">
         <img src="{{ asset('Logo/Transparan.png') }}" alt="Logo" width="10%" class="left-2">
-        <img src="{{ asset('Logo/Transparan.png') }}" alt="Logo" width="10%" class="right-2">
+        {{-- <img src="{{ asset('Logo/Transparan.png') }}" alt="Logo" width="10%" class="right-2"> --}}
         <div id="slide-page"></div>
         <div class="grid grid-cols-2 h-full">
             <div class="inner-card">
                 <form action="{{ route('AuthLogin') }}" method="post" class="static-form">
-                    <input type="text" name="level" value="Karyawan" class="hidden">
                     <div class="grid grid-cols-1 gap-4">
                         <div class="mt-7 mb-3 px-5">
-                            <h1><span>L</span>ogin <span>K</span>aryawan</h1>
+                            <h1><span>L</span>ogin <span>E</span>-Tobacco</h1>
                         </div>
                         <div class="mb-3 border-b border-green-600">
                             <i class="fa-solid fa-user text-green-600"></i>
-                            <input type="text" name="username" placeholder="Username">
+                            <input type="text" name="username" placeholder="Username" required>
                         </div>
                         <div class="mb-3 border-b border-green-600">
                             <i class="fa-solid fa-lock text-green-600"></i>
-                            <input type="password" name="password" placeholder="Password">
+                            <input type="password" name="password" placeholder="Password" required>
                         </div>
                         <div class="mt-7">
                             <button>Login</button>
                         </div>
                         <div class="mt-3">
                             <center>
-                                <p>Anda Manager? <label for="slide">Login Disini!</label></p>
+                                {{-- <p>Anda Manager? <label for="slide">Login Disini!</label></p> --}}
                             </center>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="inner-card">
-                <form action="{{ route('AuthLogin') }}" method="post" class="static-form">
-                    <input type="text" name="level" value="Manager" class="hidden">
+                {{-- <form action="{{ route('AuthLogin') }}" method="post" class="static-form">
                     <div class="grid grid-cols-1 gap-4">
                         <div class="mt-7 mb-3 px-5">
                             <h1><span>L</span>ogin <span>M</span>anager</h1>
@@ -136,7 +134,7 @@
                             </center>
                         </div>
                     </div>
-                </form>
+                </form> --}}
             </div>
         </div>
     </div>
