@@ -129,6 +129,23 @@ class MasterController extends Controller
         Session::flash('alertSuccess', 'Data Karyawan Berhasil Dihapus');
         return redirect()->route('DataKaryawan');
     }
+    public function DataJenisKaryawan() {
+        $JenisKaryawan = DB::table('jenis_karyawan')->get();
+        return view('DataJenisKaryawan', compact('JenisKaryawan'));
+    }
+    public function EditJenisKaryawan($id) {
+        $Data = DB::table('jenis_karyawan')->where('id', $id)->first();
+        return view('EditJenisKaryawan', compact('Data'));
+    }
+    public function AuthEditJenisKaryawan(Request $req) {
+        DB::table('jenis_karyawan')
+            ->where('id', $req->id)
+            ->update([
+                'gaji' => $req->gaji
+            ]);
+        Session::flash('alertSuccess', 'Data Jenis Karyawan Berhasil Diedit');
+        return redirect()->route('DataJenisKaryawan');
+    }
     public function DataAbsensi() {
         $Absensi = DB::table('absensi');
         if (Session::get('Level') == 'Karyawan') {

@@ -167,6 +167,9 @@
             <a href="{{ route('DataKaryawan') }}">
                 <li class="item-sidebar"><span><i class="fa-solid fa-user-group"></i></span> Data Karyawan</li>
             </a>  
+            <a href="{{ route('DataJenisKaryawan') }}">
+                <li class="item-sidebar"><span><i class="fa-solid fa-user-group"></i></span> Data Jenis Karyawan</li>
+            </a>  
             @else
             @endif
             <a href="{{ route('DataAbsensi') }}">

@@ -32,6 +32,9 @@ Route::middleware(['Login'])->group(function() {
     Route::post('/AuthEditKaryawan', [MasterController::class, 'AuthEditKaryawan'])->name('AuthEditKaryawan');
     Route::get('/HapusKaryawan/{id}', [MasterController::class, 'HapusKaryawan'])->name('HapusKaryawan');
     Route::post('/AuthHapusKaryawan', [MasterController::class, 'AuthHapusKaryawan'])->name('AuthHapusKaryawan');
+    Route::get('/DataJenisKaryawan', [MasterController::class, 'DataJenisKaryawan'])->name('DataJenisKaryawan');
+    Route::get('/EditJenisKaryawan/{id}', [MasterController::class, 'EditJenisKaryawan'])->name('EditJenisKaryawan');
+    Route::post('/AuthEditJenisKaryawan', [MasterController::class, 'AuthEditJenisKaryawan'])->name('AuthEditJenisKaryawan');
     Route::get('/KonfirmasiGaji/{id}', [MasterController::class, 'KonfirmasiGaji'])->name('KonfirmasiGaji');
     Route::post('/AuthKonfirmasiGaji', [MasterController::class, 'AuthKonfirmasiGaji'])->name('AuthKonfirmasiGaji');
     // Khusus Karyawan
